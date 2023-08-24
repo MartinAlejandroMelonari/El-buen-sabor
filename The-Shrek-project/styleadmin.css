@@ -1,0 +1,66 @@
+@font-face {
+    font-family: aclonica;
+    src: url(./resources/Aclonica/Aclonica-Regular.ttf);
+}
+
+* {
+    font-family: aclonica;
+}
+
+img {
+    height: 80px;
+    border-radius: 50%;
+    margin: auto;
+    padding: 20px;
+}
+
+#header {
+    background-color: #E1DFB6;
+}
+
+#main-division {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#menus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.titulo {
+    border: 5px solid black;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+#menus div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+
+.menu-button {
+    padding: 10px 15px;
+    flex: 1;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0px;
+    font-family: aclonica;
+    font-size: 15px;
+    align-self: center;
+    height: 100%;
+}
+
+.menu-button:hover {
+    background-color: transparent;
+    border: 1px solid black;
+}
