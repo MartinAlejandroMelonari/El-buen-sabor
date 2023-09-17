@@ -1,0 +1,47 @@
+.padre {
+    background-color: #E1DFB6;
+}
+
+.bottomBody {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.barraLateral {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.comida {
+    align-content: flex-start;
+    width: 80%;
+    left: 10px;
+    display: flex;
+    overflow: auto;
+    flex-wrap: wrap;
+}
+
+.buscador {
+    display: flex;
+    background-color: #b5af4a;
+    border-radius: 10px;
+}
+
+.btn-buscador {
+    background-color: transparent;
+    border: none;
+}
+
+.lupa {
+    height: 20px;
+}
+
+.text-buscador {
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+    font-size: 30px;
+    width: 80%;
+}
