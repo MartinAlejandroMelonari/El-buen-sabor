@@ -45,3 +45,8 @@
     font-size: 30px;
     width: 80%;
 }
+
+.btn-radio {
+    display: flex;
+    flex-direction: column;
+}

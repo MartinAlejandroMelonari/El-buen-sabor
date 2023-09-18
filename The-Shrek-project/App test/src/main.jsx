@@ -7,7 +7,7 @@ import Tarjetita from './components/TarjetaComida.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {Cabecera('admin')}
+    {Cabecera()}
     <Cuerpo />
 
   </React.StrictMode>,

@@ -2,7 +2,7 @@ import '../Resources/css/Cabecera.css';
 import Logo from '../Resources/Images/logo.jpeg';
 import usuario from '../Resources/Images/admin.jpeg';
 
-let Cabecera = (TipoDeUsuario) => {
+let Cabecera = (TipoDeUsuario = 'desconocido') => {
     switch (TipoDeUsuario) {
         case "admin":
             TipoDeUsuario = ['Administrar usuarios', 'Facturacion', 'Productos', 'Estadisticas e Informes'];

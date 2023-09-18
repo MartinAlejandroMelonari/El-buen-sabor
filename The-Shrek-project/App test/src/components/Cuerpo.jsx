@@ -27,17 +27,30 @@ let Cuerpo = () => {
                     <Tarjetita imgSrc="https://picsum.photos/300/200" title="alcachofas hibridas" price="$93" />
                     <Tarjetita imgSrc="https://picsum.photos/300/200" title="alcachofas hibridas" price="$13" />
                 </div>
-                <div className='barraLateral'>Barra navegacional
+                <div className='barraLateral'>
                     <div className='buscador'><input type="text" placeholder='Buscar' className='text-buscador' />
                         <button className='btn-buscador'><img src={Lupa} alt="" className='lupa' /></button></div>
                     <div className='filter-container'>
-                        Filtrar
+                        <br />    Filtrar
+                        <br />
+                        <div className='btn-radio'>
+                            <form >
+                                <fieldset>
+                                    <div>    <input type="radio" name='filtro' />Entradas</div>
+                                    <div>    <input type="radio" name='filtro' />Hamburguesas</div>
+                                    <div>    <input type="radio" name='filtro' />Pizzas</div>
+                                    <div>    <input type="radio" name='filtro' />Ensaladas</div>
+                                    <div>    <input type="radio" name='filtro' />Bebidas con alcohol</div>
+                                    <div>    <input type="radio" name='filtro' />Bebidas sin alcohol</div>
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
                     <hr />
                 </div>
-
+                <i></i>
             </div>
-        </div>
+        </div >
     )
 
 
