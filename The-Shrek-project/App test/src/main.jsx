@@ -11,8 +11,6 @@ import DropdownMenu from './components/MenusDesplegables/MenuDesplegableRubroPro
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {Cabecera()}
-    <FormularioRubroProducto />
     <FormularioProducto />
-    <DropdownMenu url='http://localhost:9000/api/v1/RubroProducto' token='papa'/>
   </React.StrictMode>,
 )

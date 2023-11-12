@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from 'axios'
 
 export const FormularioRubroProducto = () => {
+    const [esVisible, setEsVisible] = useState(false);
     const [datosFormulario, setDatosFormulario] = useState({
         descripcionCategoriaProducto:'',
         nombreCategoriaProducto:''
@@ -12,16 +13,24 @@ export const FormularioRubroProducto = () => {
         setDatosFormulario({...datosFormulario, [name]:value});
     };
 
+    const mostrarOcultar = () => {
+        // Cambia el estado para alternar entre visible y oculto
+        setEsVisible(!esVisible);
+      };
     const handleSubmit = (e) => {
-        const url = 'http://localhost:9000/api/v1/RubroProducto'
         e.preventDefault();
+        const url = 'http://localhost:9000/api/v1/RubroProducto'
         console.log("Estoy enviando :", datosFormulario);
         //Llamado a la APi con los datos
         axios.post(url,datosFormulario,{})
+        window.location.reload();
 
     };
 
         return(
+            <>
+            <button onClick={mostrarOcultar}>Crear un nuevo rubro </button>
+            {esVisible && (
             <form onSubmit={handleSubmit}>
                 <label>
                     Nombre Categoria
@@ -33,7 +42,8 @@ export const FormularioRubroProducto = () => {
                 </label>
                 <br />
                 <button type="submit">Crear</button>
-            </form>
+            </form>)}
+            </>
         );
 
 }

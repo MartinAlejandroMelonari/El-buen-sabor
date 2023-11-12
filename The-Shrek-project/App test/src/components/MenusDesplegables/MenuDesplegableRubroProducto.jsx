@@ -27,7 +27,7 @@ const DropdownMenu = ({ url , onSelectOption }) => {
   return (
     <div>
       <label>
-        Selecciona una opción:
+        Rubro producto:
         <select value={selectedOption} onChange={(e) => handleSelect(e.target.value)}>
           <option value="" disabled>Seleccione una opción</option>
           {options.map((option) => (
@@ -36,6 +36,7 @@ const DropdownMenu = ({ url , onSelectOption }) => {
             </option>
           ))}
         </select>
+        
       </label>
     </div>
   );
