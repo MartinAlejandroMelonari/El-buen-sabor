@@ -1,0 +1,19 @@
+.formulario_producto{
+    border: 1px solid black;
+    background-color: #d3d09679;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+}
+.formulario_producto form{
+
+}
+.formulario_producto form label{
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.formulario_producto form input{
+    width: 90%;
+}
