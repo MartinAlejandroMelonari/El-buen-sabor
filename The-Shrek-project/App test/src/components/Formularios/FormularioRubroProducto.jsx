@@ -7,16 +7,6 @@ export const FormularioRubroProducto = () => {
         descripcionCategoriaProducto:'',
         nombreCategoriaProducto:''
     });
-
-    const handleChange = (e) => {
-        const { name, value} = e.target;
-        setDatosFormulario({...datosFormulario, [name]:value});
-    };
-
-    const mostrarOcultar = () => {
-        // Cambia el estado para alternar entre visible y oculto
-        setEsVisible(!esVisible);
-      };
     const handleSubmit = (e) => {
         e.preventDefault();
         const url = 'http://localhost:9000/api/v1/RubroProducto'
@@ -26,6 +16,16 @@ export const FormularioRubroProducto = () => {
         window.location.reload();
 
     };
+    const handleChange = (e) => {
+        const { name, value} = e.target;
+        setDatosFormulario({...datosFormulario, [name]:value});
+    };
+
+    const mostrarOcultar = () => {
+        // Cambia el estado para alternar entre visible y oculto
+        setEsVisible(!esVisible);
+      };
+   
 
         return(
             <>
@@ -37,7 +37,7 @@ export const FormularioRubroProducto = () => {
                     <input type="text" name="nombreCategoriaProducto" value={datosFormulario.nombreCategoriaProducto} onChange={handleChange} />
                 </label>
                 <label>
-                    Nombre Categoria
+                    Descripcion Categoria
                     <input type="text" name="descripcionCategoriaProducto" value={datosFormulario.descripcionCategoriaProducto} onChange={handleChange} />
                 </label>
                 <br />

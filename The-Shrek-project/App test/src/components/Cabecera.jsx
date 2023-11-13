@@ -21,7 +21,7 @@ let Cabecera = (TipoDeUsuario = 'desconocido') => {
                 <div id="menus">
                     <h1 id="titulo">EL BUEN SABOR</h1>
                     <div id="botones">
-                        {TipoDeUsuario.map(x => <button class="menu-button">{x}</button>)} {/* mapeo el array para generar los botones necesarios */}
+                        {TipoDeUsuario.map(x => <button class="menu-button" >{x}</button>)} {/* mapeo el array para generar los botones necesarios */}
                     </div>
                 </div>
                 <div id="user" className='HeaderImage' ><img src={usuario} alt="" className='HeaderImage' /></div>
