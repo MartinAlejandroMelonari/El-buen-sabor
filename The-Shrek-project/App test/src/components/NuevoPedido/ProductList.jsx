@@ -17,7 +17,7 @@ const ProductoList = () => {
   
       obtenerProductos();
     }, [pagina]);
-  
+    
     useEffect(() => {
       const manejarScroll = () => {
         if (
@@ -38,17 +38,17 @@ const ProductoList = () => {
     const handleAgregarAlCarrito = (id, nombre, precio) => {
       // Lógica para agregar el producto al carrito
       console.log(`Producto con ID ${id} (${nombre}) añadido al carrito`);
-      agregarAlCarrito(id, nombre, precio);
+      agregarAlCarrito(id, nombre, precio, 1);
     };
     const obtenerProductosDesdeAPI = async (pagina) => {
       try {
         const parametros = {
-          params: {
+          pageable: {
             page: pagina,
             pageSize: 6,
           },
         };
-  
+        console.log(parametros)
         const respuesta = await axios.get(
           'http://localhost:9000/api/v1/Producto',
           parametros

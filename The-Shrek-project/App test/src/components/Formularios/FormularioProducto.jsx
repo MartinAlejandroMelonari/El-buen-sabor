@@ -104,10 +104,10 @@ export const FormularioProducto = () => {
                     Nombre receta
                     <input type="text" value={datosFormulario.receta.nombreReceta} onChange=
                     {(e) => setDatosFormulario({ ...datosFormulario, receta: { nombreReceta: e.target.value } })} />
-                </label>
-                <label>
-                    Instrucciones receta
-                    <br />
+                </label>    
+                <label> 
+                    Instrucciones receta    
+                    <br />  
                     <textarea id="textarea_formularioproducto"
                         name="receta"
                         value={datosFormulario.receta.instruccion}

@@ -14,7 +14,7 @@
     flex-direction: column;
 }
 
-.comida {
+.barraCentral {
     align-content: flex-start;
     width: 80%;
     left: 10px;

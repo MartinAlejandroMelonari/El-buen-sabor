@@ -1,19 +1,29 @@
 import '../Resources/css/Cuerpo.css';
+import { useState } from 'react';
 import Tarjetita from './TarjetaComida'
 import Lupa from '../Resources/Images/Lupa.png'
 import ProductoList from './NuevoPedido/ProductList';
 import '../Resources/css/TarjetaComida.css'
 import { CarritoProvider } from './NuevoPedido/Contexto/ContextoCarrito.jsx';
-import ComponenteConCarrito from './NuevoPedido/Carrito.jsx';
+import Carrito from './NuevoPedido/Carrito.jsx';
+import FinalizarCompra from './NuevoPedido/FinalizarCompra.jsx'
 
 let Cuerpo = () => {
-
+    const [componenteActual, setComponenteActual] = useState('productos');
+    const cambiarAComponente = (parametro) => {
+        setComponenteActual(parametro);
+      };
     return (
         <div className='padre'>
             <div className='bottomBody'>
-                <div className='comida'>
+                <div className='barraCentral'>
                     
-                    <ProductoList />
+                {componenteActual === 'productos' && (
+                <ProductoList />
+                )}
+                {componenteActual === 'finalizarCompra' && (
+                <FinalizarCompra cambiarAComponente={cambiarAComponente}/>
+                )}
                 </div>
                 <div className='barraLateral'>
                     <div className='buscador'><input type="text" placeholder='Buscar' className='text-buscador' />
@@ -35,7 +45,7 @@ let Cuerpo = () => {
                         </div>
                     </div>
                     <hr />
-                    <ComponenteConCarrito />
+                    <Carrito cambiarAComponente={cambiarAComponente} />
                 </div>
                 <i></i>
             </div>
