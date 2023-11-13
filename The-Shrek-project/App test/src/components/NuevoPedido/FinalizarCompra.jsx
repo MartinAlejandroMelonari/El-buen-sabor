@@ -11,7 +11,7 @@ export const finalizarCompra = ({cambiarAComponente}) =>{
       };
     const RealizarPedido = () =>{
         const [pedido, setPedido]= useState({
-
+            
         })
     }  
       const RemoverProducto = (id) => {
