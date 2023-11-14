@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../Connections/axiosConfig';
 
-const DropdownMenu = ({ url , onSelectOption }) => {
+const DropdownMenu = ({ onSelectOption }) => {
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(url);
+        const response = await axiosInstance.get(`/api/v1/RubroProducto`);
         setOptions(response.data);
         console.log(response.data)
       } catch (error) {

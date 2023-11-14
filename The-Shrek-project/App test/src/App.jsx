@@ -1,34 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './Resources/css/App.css'
+import Cabecera from './components/Cabecera';
+import CuerpoPedidoProductos from './components/CuerpoPedidoProductos';
+import { FormularioProducto } from './components/Formularios/FormularioProducto';
+import { CarritoProvider } from './components/NuevoPedido/Contexto/ContextoCarrito';
+import { Registro } from './components/Formularios/Registro';
+import { Login } from './components/Formularios/Login';
+import PrivateRoute from './components/Seguridad/PrivateRoute';
+import PublicRoute from './components/Seguridad/PublicRoutes';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <CarritoProvider>
+    <Router>
+      
+        <Cabecera />
+        <div className='padre'>
+        
+          <Routes>
+            <Route path="" element={<CuerpoPedidoProductos />} />
+            <Route path="/NuevoProducto" element={<PrivateRoute element={< FormularioProducto />}/>} />
+            <Route path="/Register" element={<PublicRoute element={<Registro />}/>}/>
+            <Route path="/Login" element={<PublicRoute element={<Login />}/>}/>
+          </Routes>
 
-export default App
+        
+        </div>
+      
+    </Router>
+    </CarritoProvider>
+  );
+};
+
+export default App;

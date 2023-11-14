@@ -1,18 +1,14 @@
 import '../../Resources/css/FinalizarCompra.css'
 import { useCarrito } from '../NuevoPedido/Contexto/ContextoCarrito.jsx';
-import Pagar from './Pagar.jsx';
+import RealizarElPedido from './RealizarPedido.jsx';
 import { useState } from 'react';
 
 export const finalizarCompra = ({cambiarAComponente}) =>{
     const { carrito, agregarAlCarrito } = useCarrito();
     const CambiarAFinalizarCompra = () => {
-        console.log("Estoy yendo hacia atrás");
         cambiarAComponente('productos');
       };
     const RealizarPedido = () =>{
-        const [pedido, setPedido]= useState({
-            
-        })
     }  
       const RemoverProducto = (id) => {
         const productoEnCarrito = carrito.find((item) => item.id === id);
@@ -20,10 +16,10 @@ export const finalizarCompra = ({cambiarAComponente}) =>{
         if (productoEnCarrito) {
           // Si la cantidad es mayor que 1, reducir en 1, de lo contrario, eliminar el producto del carrito
           if (productoEnCarrito.cantidad > 1) {
-            agregarAlCarrito(id, productoEnCarrito.nombre, productoEnCarrito.precioVenta, 2);
+            agregarAlCarrito(id, productoEnCarrito.nombre, (productoEnCarrito.precio / productoEnCarrito.cantidad), 2,(productoEnCarrito.costo / productoEnCarrito.cantidad));
           } else {
             // Eliminar el producto del carrito
-            agregarAlCarrito(id, productoEnCarrito.nombre, productoEnCarrito.precioVenta, 3);
+            agregarAlCarrito(id, productoEnCarrito.nombre, (productoEnCarrito.precio / productoEnCarrito.cantidad), 3,(productoEnCarrito.costo / productoEnCarrito.cantidad));
             CambiarAFinalizarCompra()
           }
         }
@@ -43,14 +39,19 @@ export const finalizarCompra = ({cambiarAComponente}) =>{
     return (
     <div>     
     <table>
+        <thead>
         <tr>
             <th id="tituloCarrito"><h1 >Carrito de Compras</h1></th>
         </tr>
         <tr>
+            
             <th>Nombre del producto</th>
             <th>Cantidad</th>   
             <th>Precio</th>   
+            
         </tr>
+        </thead>
+        <tbody>
         {carrito.map((item) => (
           
           <tr key={item.id}>         
@@ -60,17 +61,20 @@ export const finalizarCompra = ({cambiarAComponente}) =>{
         <td><button onClick={() => RemoverProducto(item.id)}>Quitar</button></td>
         </tr>
     ))}
+    </tbody>
+    <tfoot>
     <tr>
       <td></td>
       <td>Total</td>
       <td>{TotalCarrito()}</td></tr>
       <tr>
         <td></td>
-        <td><button onClick={RealizarPedido}>Realizar Pedido</button></td>
+        <td><button>Realizar Pedido</button></td>
         <td><button onClick={CambiarAFinalizarCompra}>Volver atras</button></td>
       </tr>
+      </tfoot>
     </table>
-    <Pagar />
+    <RealizarElPedido />
     </div>
 
 
