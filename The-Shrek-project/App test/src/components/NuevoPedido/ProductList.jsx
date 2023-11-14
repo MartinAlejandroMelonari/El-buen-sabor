@@ -12,28 +12,13 @@ const ProductoList = () => {
     useEffect(() => {
       const obtenerProductos = async () => {
         const nuevosProductos = await obtenerProductosDesdeAPI(pagina);
-        setProductos((prevProductos) => [...prevProductos, ...nuevosProductos]);
+        setProductos(nuevosProductos);
       };
-  
       obtenerProductos();
-    }, [pagina]);
-    
-    useEffect(() => {
-      const manejarScroll = () => {
-        if (
-          window.innerHeight + document.documentElement.scrollTop ===
-          document.documentElement.offsetHeight
-        ) {
-          setPagina((prevPagina) => prevPagina + 1);
-        }
-      };
-  
-      window.addEventListener('scroll', manejarScroll);
-  
-      return () => {
-        window.removeEventListener('scroll', manejarScroll);
-      };
+      console.log("Estoy aca")
     }, []);
+    
+    
     
     const handleAgregarAlCarrito = (id, nombre, precio) => {
       // Lógica para agregar el producto al carrito
