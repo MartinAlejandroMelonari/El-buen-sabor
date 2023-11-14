@@ -10,10 +10,22 @@
 
 }
 .formulario_producto form label{
+    margin-top: 10px;
     display: block;
     margin-bottom: 10px;
     text-align: center;
 }
 .formulario_producto form input{
     width: 90%;
+    box-sizing: border-box;
+}
+#textarea_formularioproducto{
+    margin-top: 10px;
+    width: 80%;
+}
+.formulario_producto form button{
+    align-self: center;
+    margin-left: 35%;
+    width: 30%;
+    margin-bottom: 20px;
 }

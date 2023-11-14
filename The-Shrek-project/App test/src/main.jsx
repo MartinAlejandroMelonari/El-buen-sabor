@@ -6,13 +6,15 @@ import Tarjetita from './components/TarjetaComida.jsx';
 import { FormularioRubroProducto } from './components/Formularios/FormularioRubroProducto.jsx';
 import { FormularioProducto } from './components/Formularios/FormularioProducto.jsx';
 import DropdownMenu from './components/MenusDesplegables/MenuDesplegableRubroProducto.jsx';
+import { CarritoProvider } from './components/NuevoPedido/Contexto/ContextoCarrito.jsx';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <CarritoProvider>
     {Cabecera()}
-    <FormularioRubroProducto />
+    <Cuerpo />
     <FormularioProducto />
-    <DropdownMenu url='http://localhost:9000/api/v1/RubroProducto' token='papa'/>
+    </CarritoProvider>
   </React.StrictMode>,
 )

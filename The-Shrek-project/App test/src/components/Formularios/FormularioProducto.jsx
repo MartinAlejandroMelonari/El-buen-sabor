@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from 'axios'
 import DropdownMenu from "../MenusDesplegables/MenuDesplegableRubroProducto";
 import '../../Resources/css/FormularioProducto.css';
+import { FormularioRubroProducto } from './FormularioRubroProducto';
 
 export const FormularioProducto = () => {
     const [datosFormulario, setDatosFormulario] = useState({
@@ -33,18 +34,16 @@ export const FormularioProducto = () => {
         e.preventDefault();
         const datosFormularioConId = {
             ...datosFormulario,
-            receta: {
-                nombreReceta: datosFormulario.receta.nombreReceta,
-                instruccion: datosFormulario.receta.instruccion,
-                duracionReceta: datosFormulario.receta.duracionReceta,
-
-
-            },
+        receta: {
+            ...datosFormulario.receta,
+            // Solo necesitas estas propiedades de receta aquí
+            duracionReceta: datosFormulario.receta.duracionReceta,
+        },
             rubroProducto: {
                 id: datosFormulario.rubroProducto.id
             }
         };
-        
+        console.log("Receta actualizada:", datosFormulario.receta);
         console.log("Estoy enviando :", datosFormularioConId);
         const camposCompletos = Object.values(datosFormularioConId).every((campo) => (campo !== '' && campo !== 0 && campo !== null));
         if (camposCompletos) {
@@ -59,7 +58,22 @@ export const FormularioProducto = () => {
         } else {
             console.log('Por favor, complete todos los campos antes de enviar el formulario.');
           }
-
+          setDatosFormulario({
+            denominacion: '',
+            descripcion: '',
+            tiempoEstimadoCocina: 0,
+            precioVenta: '',
+            costo: 0,
+            urlImagen: '',
+            receta: {
+                nombreReceta: '',
+                instruccion: '',
+                duracionReceta: 0
+            },
+            rubroProducto: {
+                id: 0
+            }
+        });
     };
 
         return(
@@ -74,11 +88,8 @@ export const FormularioProducto = () => {
                     <input type="text" name="descripcion" value={datosFormulario.descripcion} onChange={handleChange} />
                 </label>
                 <label>
-                    Tiempo estimado de cocina en minutos
-                    <input type="text" name="tiempoEstimadoCocina" value={datosFormulario.tiempoEstimadoCocina} onChange={handleChange} />
-                </label>
-                <label>
                     Precio Venta
+                    <br />
                     <input type="text" name="precioVenta" value={datosFormulario.precioVenta} onChange={handleChange} />
                 </label>
                 <label>
@@ -93,13 +104,22 @@ export const FormularioProducto = () => {
                     Nombre receta
                     <input type="text" value={datosFormulario.receta.nombreReceta} onChange=
                     {(e) => setDatosFormulario({ ...datosFormulario, receta: { nombreReceta: e.target.value } })} />
+                </label>    
+                <label> 
+                    Instrucciones receta    
+                    <br />  
+                    <textarea id="textarea_formularioproducto"
+                        name="receta"
+                        value={datosFormulario.receta.instruccion}
+                        rows="4"
+                        onChange=
+                    {(e) => setDatosFormulario({ ...datosFormulario, receta: { instruccion: e.target.value } })} 
+                    />
                 </label>
                 <label>
-                    Instrucciones receta
-                    <input type="text" value={datosFormulario.receta.instruccion} onChange=
-                    {(e) => setDatosFormulario({ ...datosFormulario, receta: { instruccion: e.target.value } })} />
+                    Tiempo estimado de cocina en minutos
+                    <input type="text" name="tiempoEstimadoCocina" value={datosFormulario.tiempoEstimadoCocina} onChange={handleChange} />
                 </label>
-                
                 <label>
                     Duracion receta
                     <input type="text" value={datosFormulario.receta.duracionReceta} onChange=
@@ -109,7 +129,10 @@ export const FormularioProducto = () => {
                 
                 <br />
                 <button type="submit">Crear</button>
+                
             </form>
+            
+            <FormularioRubroProducto />
             </div>
         );
 
