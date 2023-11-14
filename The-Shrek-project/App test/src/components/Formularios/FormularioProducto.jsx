@@ -1,8 +1,9 @@
 import { useState } from "react";
 import axios from 'axios'
-import DropdownMenu from "../MenusDesplegables/MenuDesplegableRubroProducto";
+import DropdownMenuRubroProducto from "../MenusDesplegables/MenuDesplegableRubroProducto";
 import '../../Resources/css/FormularioProducto.css';
 import { FormularioRubroProducto } from './FormularioRubroProducto';
+import { API_BASE_URL } from "../Connections/config";
 
 export const FormularioProducto = () => {
     const [datosFormulario, setDatosFormulario] = useState({
@@ -30,7 +31,7 @@ export const FormularioProducto = () => {
         setDatosFormulario({ ...datosFormulario, rubroProducto: { id:selectedOption } });
       };
     const handleSubmit = (e) => {
-        const url = 'http://localhost:9000/api/v1/Producto'
+        const url = `${API_BASE_URL}/api/v1/Producto`
         e.preventDefault();
         const datosFormularioConId = {
             ...datosFormulario,
@@ -102,8 +103,12 @@ export const FormularioProducto = () => {
                 </label>
                 <label>
                     Nombre receta
-                    <input type="text" value={datosFormulario.receta.nombreReceta} onChange=
-                    {(e) => setDatosFormulario({ ...datosFormulario, receta: { nombreReceta: e.target.value } })} />
+                    <input type="text" value={datosFormulario.receta.nombreReceta} onChange={(e) =>
+                  setDatosFormulario((prevDatos) => ({
+                    ...prevDatos,
+                    receta: { ...prevDatos.receta, nombreReceta: e.target.value },
+                  }))
+                }/>
                 </label>    
                 <label> 
                     Instrucciones receta    
@@ -112,8 +117,12 @@ export const FormularioProducto = () => {
                         name="receta"
                         value={datosFormulario.receta.instruccion}
                         rows="4"
-                        onChange=
-                    {(e) => setDatosFormulario({ ...datosFormulario, receta: { instruccion: e.target.value } })} 
+                        onChange={(e) =>
+                            setDatosFormulario((prevDatos) => ({
+                              ...prevDatos,
+                              receta: { ...prevDatos.receta, instruccion: e.target.value },
+                            }))
+                          }
                     />
                 </label>
                 <label>
@@ -122,10 +131,16 @@ export const FormularioProducto = () => {
                 </label>
                 <label>
                     Duracion receta
-                    <input type="text" value={datosFormulario.receta.duracionReceta} onChange=
-                    {(e) => setDatosFormulario({ ...datosFormulario, receta: { duracionReceta: e.target.value } })} />
+                    <input type="text" value={datosFormulario.receta.duracionReceta} 
+                            onChange={(e) =>
+                            setDatosFormulario((prevDatos) => ({
+                              ...prevDatos,
+                              receta: { ...prevDatos.receta, duracionReceta: e.target.value },
+                            }))
+                          }
+                    />
                 </label>
-                <DropdownMenu url='http://localhost:9000/api/v1/RubroProducto' onSelectOption={handleDropdownSelect}/>
+                <DropdownMenuRubroProducto  onSelectOption={handleDropdownSelect}/>
                 
                 <br />
                 <button type="submit">Crear</button>

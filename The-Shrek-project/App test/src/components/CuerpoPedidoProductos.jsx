@@ -1,20 +1,20 @@
 import '../Resources/css/Cuerpo.css';
 import { useState } from 'react';
-import Tarjetita from './TarjetaComida'
+import Tarjetita from './TarjetaComida.jsx'
 import Lupa from '../Resources/Images/Lupa.png'
-import ProductoList from './NuevoPedido/ProductList';
+import ProductoList from './NuevoPedido/ProductList.jsx';
 import '../Resources/css/TarjetaComida.css'
 import { CarritoProvider } from './NuevoPedido/Contexto/ContextoCarrito.jsx';
 import Carrito from './NuevoPedido/Carrito.jsx';
 import FinalizarCompra from './NuevoPedido/FinalizarCompra.jsx'
 
-let Cuerpo = () => {
+let CuerpoPedidoProductos = () => {
     const [componenteActual, setComponenteActual] = useState('productos');
     const cambiarAComponente = (parametro) => {
         setComponenteActual(parametro);
       };
     return (
-        <div className='padre'>
+       
             <div className='bottomBody'>
                 <div className='barraCentral'>
                     
@@ -49,11 +49,11 @@ let Cuerpo = () => {
                 </div>
                 <i></i>
             </div>
-        </div >
+        
     )
 
 
 }
 
 
-export default Cuerpo
+export default CuerpoPedidoProductos

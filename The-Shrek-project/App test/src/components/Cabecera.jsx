@@ -1,17 +1,22 @@
 import '../Resources/css/Cabecera.css';
 import Logo from '../Resources/Images/logo.jpeg';
 import usuario from '../Resources/Images/admin.jpeg';
+import { Link } from 'react-router-dom';
 
-let Cabecera = (TipoDeUsuario = 'desconocido') => {
+const Cabecera = ({TipoDeUsuario = 'desconocido'}) => {
+    let Navegacion = []
     switch (TipoDeUsuario) {
+        
         case "admin":
-            TipoDeUsuario = ['Administrar usuarios', 'Facturacion', 'Productos', 'Estadisticas e Informes'];
+            Navegacion = [
+                {ruta:'',nombre:'Administrar usuarios'},{ruta:'',nombre:'Facturacion'},
+                {ruta:'',nombre:'Productos'},{ruta:'',nombre:'Estadisticas e Informes'}]
             break
         case "usuario":
-            TipoDeUsuario = ['Mis pedidos', 'Facturacion', 'Productos', 'Estadisticas e Informes']
+            Navegacion = [{ruta:'',nombre:'Mis pedidos'},{ruta:'',nombre:'Productos'},{ruta:'',nombre:'Logout'}]
             break
         case "desconocido":
-            TipoDeUsuario = ['Ingresar', 'Registrarse']
+            Navegacion = [{ruta:'',nombre:'Ingresar'},{ruta:'',nombre:'Registrarse'}]
             break
     }
     return (
@@ -20,9 +25,16 @@ let Cabecera = (TipoDeUsuario = 'desconocido') => {
                 <div id="logo" > <img src={Logo} alt="" className='HeaderImage' /></div>
                 <div id="menus">
                     <h1 id="titulo">EL BUEN SABOR</h1>
+                    
                     <div id="botones">
-                        {TipoDeUsuario.map(x => <button class="menu-button" >{x}</button>)} {/* mapeo el array para generar los botones necesarios */}
+                    <nav>
+                        {Navegacion.map((x,index) => 
+                        <Link key={index} to={x.ruta}>
+                        <button className="menu-button" >{x.nombre}</button>
+                        </Link>)} {/* mapeo el array para generar los botones necesarios */}
+                    </nav>
                     </div>
+                    
                 </div>
                 <div id="user" className='HeaderImage' ><img src={usuario} alt="" className='HeaderImage' /></div>
             </div>

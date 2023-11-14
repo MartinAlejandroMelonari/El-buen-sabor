@@ -5,7 +5,7 @@ const CarritoContext = createContext();
 export const CarritoProvider = ({ children }) => {
   const [carrito, setCarrito] = useState([]);
 
-  const agregarAlCarrito = (productoId, nombreProducto, precioProducto, accion) => {
+  const agregarAlCarrito = (productoId, nombreProducto, precioProducto, accion, costoPorUnidad) => {
     // Verifica si el producto ya está en el carrito
     const productoEnCarrito = carrito.find((item) => item.id === productoId);
   
@@ -29,6 +29,7 @@ export const CarritoProvider = ({ children }) => {
             setCarrito(nuevoCarritoSinProducto);
             return; // Salimos de la función ya que el producto fue eliminado
           }
+
           break;
         case 3:
           // Elimina el producto del carrito
@@ -41,9 +42,13 @@ export const CarritoProvider = ({ children }) => {
       }
   
       // Actualiza el carrito con la nueva cantidad
+      
+      let nuevoPrecio = (precioProducto.toFixed(2) * nuevaCantidad.toFixed(2))
+      let costoTotal = costoPorUnidad * nuevaCantidad.toFixed(0)
+      console.log(costoTotal)
       const nuevoCarrito = carrito.map((item) =>
         item.id === productoId
-          ? { ...item, cantidad: nuevaCantidad, precio: precioProducto * nuevaCantidad }
+          ? { ...item, cantidad: nuevaCantidad, precio: nuevoPrecio, costo: costoTotal }
           : item
       );
   
@@ -53,7 +58,7 @@ export const CarritoProvider = ({ children }) => {
       if (accion === 1) {
         // Si la acción es 1, lo agrega con cantidad 1
         setCarrito((prevCarrito) => [
-          ...prevCarrito, { id: productoId, cantidad: 1, nombre: nombreProducto, precio: precioProducto }
+          ...prevCarrito, { id: productoId, cantidad: 1, nombre: nombreProducto, precio: precioProducto, costo: costoPorUnidad }
         ]);
       }
     }
