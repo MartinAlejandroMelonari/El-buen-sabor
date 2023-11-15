@@ -47,7 +47,7 @@ export const FormularioProducto = () => {
         const camposCompletos = Object.values(datosFormularioConId).every((campo) => (campo !== '' && campo !== 0 && campo !== null));
         if (camposCompletos) {
         //Llamado a la APi con los datos
-            axiosInstance.post('/api/v1/Producto',datosFormularioConId)
+            axiosInstance.post('api/v1/e/Producto',datosFormularioConId)
             .then(response => {
                 console.log(response.data);
             })

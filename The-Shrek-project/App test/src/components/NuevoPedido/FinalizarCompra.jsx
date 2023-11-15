@@ -7,9 +7,7 @@ export const finalizarCompra = ({cambiarAComponente}) =>{
     const { carrito, agregarAlCarrito } = useCarrito();
     const CambiarAFinalizarCompra = () => {
         cambiarAComponente('productos');
-      };
-    const RealizarPedido = () =>{
-    }  
+      }; 
       const RemoverProducto = (id) => {
         const productoEnCarrito = carrito.find((item) => item.id === id);
     

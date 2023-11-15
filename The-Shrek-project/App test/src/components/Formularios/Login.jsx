@@ -29,6 +29,7 @@ export const Login = () => {
           // Manejar la respuesta del servidor, por ejemplo, almacenar el token
           window.localStorage.setItem('token', data.token);
           window.localStorage.setItem('isLoggedIn','true')
+          window.localStorage.setItem('Id',data.id)
           console.log('Token:', data.token);
           window.location.href = "/";
           
@@ -57,7 +58,7 @@ export const Login = () => {
           </label>
           <br />
           <button type="submit">Iniciar Sesión</button>
-          <button type="submit">Cancelar</button>
+          <button type="">Cancelar</button>
           <br />
           <a href="">Iniciar sesión con google <img className= "google" src="src/Resources/Images/google.jpeg" alt="" /></a>
           <p>No tengo cuenta, <a href="./Register">Registrarme</a></p>
