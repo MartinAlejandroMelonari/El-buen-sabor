@@ -2,8 +2,14 @@ import '../../Resources/css/Login.css'
 import ImagenLogin from '../../Resources/Images/Login-Registro.jpg'
 import { useState } from 'react';
 import axiosInstance from '../Connections/axiosConfig';
+import { Navigate } from 'react-router-dom';
+import useIsLoggedIn from '../Hooks/IsLoggedIn';
 
 export const Login = () => {
+  if(useIsLoggedIn()){
+    window.location.href = "/"
+    return(null)
+  }
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
   
@@ -24,6 +30,7 @@ export const Login = () => {
           window.localStorage.setItem('token', data.token);
           window.localStorage.setItem('isLoggedIn','true')
           console.log('Token:', data.token);
+          window.location.href = "/";
           
         } else {
           console.error('Credenciales inválidas');

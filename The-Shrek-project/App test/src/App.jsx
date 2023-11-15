@@ -6,6 +6,7 @@ import { FormularioProducto } from './components/Formularios/FormularioProducto'
 import { CarritoProvider } from './components/NuevoPedido/Contexto/ContextoCarrito';
 import { Registro } from './components/Formularios/Registro';
 import { Login } from './components/Formularios/Login';
+import Logout from './components/Seguridad/Logout';
 import PrivateRoute from './components/Seguridad/PrivateRoute';
 import PublicRoute from './components/Seguridad/PublicRoutes';
 
@@ -21,8 +22,9 @@ function App() {
           <Routes>
             <Route path="" element={<CuerpoPedidoProductos />} />
             <Route path="/NuevoProducto" element={<PrivateRoute element={< FormularioProducto />}/>} />
-            <Route path="/Register" element={<PublicRoute element={<Registro />}/>}/>
-            <Route path="/Login" element={<PublicRoute element={<Login />}/>}/>
+            <Route path="/Register" element={<Registro />}/>
+            <Route path="/Login" element={<Login />}/>
+            <Route path="/Logout" element={<Logout />} />
           </Routes>
 
         

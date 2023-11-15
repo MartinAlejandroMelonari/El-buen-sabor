@@ -2,7 +2,7 @@ import '../../Resources/css/Login.css';
 import ImagenLogin from '../../Resources/Images/Login-Registro.jpg'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../Connections/axiosConfig';
 
 export const Registro = () => {
     const navigate = useNavigate();
@@ -49,7 +49,6 @@ export const Registro = () => {
     return (
 
       <div className='container'>
-        <h2>Crear cuenta</h2>
       <div>
         <h2>Registrarse</h2>
         <form onSubmit={handleRegistro}>
@@ -86,7 +85,7 @@ export const Registro = () => {
           </label>
           <br />
 
-          <button type="submit">Iniciar Sesión</button>
+          <button type="submit">Registrarse</button>
           <button type="submit">Cancelar</button>
           <br />
           <a href="">Crear cuenta con google <img className= "google" src="src/Resources/Images/google.jpeg" alt="" /></a>

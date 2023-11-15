@@ -16,7 +16,7 @@ const Cabecera = ({TipoDeUsuario = 'usuario'}) => {
                 {ruta:'',nombre:'Productos'},{ruta:'',nombre:'Estadisticas e Informes'}]
             break
         case "usuario":
-            Navegacion = [{ruta:'',nombre:'Mis pedidos'},{ruta:'/Productos',nombre:'Productos'},{ruta:'',nombre:'Logout'}]
+            Navegacion = [{ruta:'/MisPedidos',nombre:'Mis pedidos'},{ruta:'',nombre:'Productos'},{ruta:'/Logout',nombre:'Logout'}]
             break
     }
     }else {
