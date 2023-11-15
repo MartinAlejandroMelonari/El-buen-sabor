@@ -7,33 +7,26 @@ import axiosInstance from '../Connections/axiosConfig.jsx';
 const RealizarPedido = () =>{
     const { carrito } = useCarrito();
     const [datosCabeceraPedido, setDatosCabeceraPedido] = useState({
-        horaEstimadaFinalizacion: '',//TODO
         total: '',
         totalCosto: '',
         estado: 0,      
         estado_pago: 0,
         forma_pago: 0,
         tipo_envio: 0,
-        domicilio:{
+        /* domicilio:{
             calle:'',
             numero:0,
             numeroDpto:0,
             pisoDpto:0
 
-        },
+        }, */
         cliente:{
             id:0 //ver como obtengo el id desde el token
-        }
+        },
+        detallePedido:[{id:3}]
     });
     // Función para obtener la hora actual más 30 minutos
-  const obtenerHoraActualMas30Minutos = () => {
-    const ahora = new Date();
-    ahora.setMinutes(ahora.getMinutes() + 30);
-    //Formateo la hora a HH:MM
-    const horaFormateada = ahora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-    return horaFormateada;
-  };
+  
     const TotalCarrito = () => {
    
         let total = 0
@@ -52,16 +45,29 @@ const RealizarPedido = () =>{
           });    
         }
     return total.toFixed(2)}
+    const CrearPedido = async () => {
+      try {
+        const respuesta = await axiosInstance.post(
+          `/api/v1/Pedido`,
+          datosCabeceraPedido
+        );
+        console.log(respuesta.data)
+        return respuesta.data;
+      } catch (error) {
+        return console.error('Error al obtener productos desde la API:', error);
+         }
+    };
     const handleSubmit = (e) => {
         setDatosCabeceraPedido({
-            ...datosCabeceraPedido,total : TotalCarrito(),totalCosto: TotalCostoCarrito(), horaEstimadaFinalizacion : obtenerHoraActualMas30Minutos()
-        })
+            ...datosCabeceraPedido,total : TotalCarrito(),totalCosto: TotalCostoCarrito()})
         e.preventDefault();
         console.log(datosCabeceraPedido)
         
         const camposCompletos = Object.values(datosCabeceraPedido).every((campo) => (campo !== ''));
         if (camposCompletos) {
             console.log("Hubiera enviado")
+            CrearPedido()
+            
        /*  const url = `/api/v1/Pedido`
         console.log("Estoy enviando :", datosCabeceraPedido);
         //Llamado a la APi con los datos
@@ -86,7 +92,7 @@ const RealizarPedido = () =>{
       return (
         <>
           <form onSubmit={handleSubmit}>
-            <label>
+            {/* <label>
               Domicilio
             </label>
             <br />
@@ -148,7 +154,7 @@ const RealizarPedido = () =>{
                   }))
                 }
               />
-            </label>
+            </label> */}
             <DropdownMedioDePago onSelectOption={handleFormaPagoDropdownSelect} />
             <br />
             <DropdownTipoEntrega onSelectOption={handleTipoEnvioDropdownSelect} />

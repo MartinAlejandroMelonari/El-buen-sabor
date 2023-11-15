@@ -1,9 +1,8 @@
 import { useState } from "react";
-import axios from 'axios'
+import axiosInstance from "../Connections/axiosConfig";
 import DropdownMenuRubroProducto from "../MenusDesplegables/MenuDesplegableRubroProducto";
 import '../../Resources/css/FormularioProducto.css';
 import { FormularioRubroProducto } from './FormularioRubroProducto';
-import { API_BASE_URL } from "../Connections/config";
 
 export const FormularioProducto = () => {
     const [datosFormulario, setDatosFormulario] = useState({
@@ -31,7 +30,6 @@ export const FormularioProducto = () => {
         setDatosFormulario({ ...datosFormulario, rubroProducto: { id:selectedOption } });
       };
     const handleSubmit = (e) => {
-        const url = `${API_BASE_URL}/api/v1/Producto`
         e.preventDefault();
         const datosFormularioConId = {
             ...datosFormulario,
@@ -49,7 +47,7 @@ export const FormularioProducto = () => {
         const camposCompletos = Object.values(datosFormularioConId).every((campo) => (campo !== '' && campo !== 0 && campo !== null));
         if (camposCompletos) {
         //Llamado a la APi con los datos
-            axios.post(url,datosFormularioConId,{})
+            axiosInstance.post('/api/v1/Producto',datosFormularioConId)
             .then(response => {
                 console.log(response.data);
             })
