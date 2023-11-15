@@ -64,7 +64,7 @@ const RealizarPedido = () =>{
             id: numeroPedido
           }
         }));
-        const respuestas = await Promise.all(detallesPedidoArray.map(detalle => axiosInstance.post('api/v1/DetallePedido', detalle)));
+        const respuestas = await Promise.all(detallesPedidoArray.map(detalle => axiosInstance.post('api/v1/e/DetallePedido', detalle)));
         // Actualizar el estado después de que todas las solicitudes POST hayan tenido éxito
         setIdDetallesPedido((prevIds) => [
           ...prevIds,
@@ -86,7 +86,7 @@ const RealizarPedido = () =>{
     const CrearPedido = async () => {
       try {
         const respuesta = await axiosInstance.post(
-          `/api/v1/Pedido`,
+          `/api/v1/e/Pedido`,
           datosCabeceraPedido
         );
         setNumeroPedido(respuesta.data.id)

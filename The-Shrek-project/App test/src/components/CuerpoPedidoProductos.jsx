@@ -1,10 +1,8 @@
 import '../Resources/css/Cuerpo.css';
 import { useState } from 'react';
-import Tarjetita from './TarjetaComida.jsx'
 import Lupa from '../Resources/Images/Lupa.png'
 import ProductoList from './NuevoPedido/ProductList.jsx';
 import '../Resources/css/TarjetaComida.css'
-import { CarritoProvider } from './NuevoPedido/Contexto/ContextoCarrito.jsx';
 import Carrito from './NuevoPedido/Carrito.jsx';
 import FinalizarCompra from './NuevoPedido/FinalizarCompra.jsx'
 

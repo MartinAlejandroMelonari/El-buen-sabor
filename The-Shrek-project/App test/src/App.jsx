@@ -8,7 +8,6 @@ import { Registro } from './components/Formularios/Registro';
 import { Login } from './components/Formularios/Login';
 import Logout from './components/Seguridad/Logout';
 import PrivateRoute from './components/Seguridad/PrivateRoute';
-import PublicRoute from './components/Seguridad/PublicRoutes';
 
 function App() {
 

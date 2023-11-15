@@ -19,9 +19,27 @@
     width: 80%;
     left: 10px;
     display: flex;
-    overflow: auto;
     flex-wrap: wrap;
 }
+
+.barraCentral::-webkit-scrollbar {
+    width: 12px; /* Ancho de la barra de desplazamiento */
+  }
+  
+  .barraCentral::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color del pulgar de la barra de desplazamiento */
+    border-radius: 20px; 
+  }
+  
+  .barraCentral::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color del fondo de la barra de desplazamiento */
+  }
+  
+  /* Estilos adicionales (opcional) */
+  .barraCentral {
+    max-height: 80%; /* Altura máxima del contenedor */
+    overflow-y: auto; /* Habilita la barra de desplazamiento vertical */
+  }
 
 .buscador {
     display: flex;
