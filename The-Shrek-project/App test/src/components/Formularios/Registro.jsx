@@ -50,10 +50,8 @@ export const Registro = () => {
 
       <div className='container'>
         <h2>Crear cuenta</h2>
-=========
       <div>
         <h2>Registrarse</h2>
->>>>>>>>> Temporary merge branch 2
         <form onSubmit={handleRegistro}>
         <img src="src/Resources/Images/Login-Registro.jpg" alt="" />
         <br />
@@ -94,6 +92,7 @@ export const Registro = () => {
           <a href="">Crear cuenta con google <img className= "google" src="src/Resources/Images/google.jpeg" alt="" /></a>
         </form>
       </div>
+    </div>
     );
   };
   
