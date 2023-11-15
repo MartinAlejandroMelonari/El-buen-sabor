@@ -30,7 +30,7 @@ const ProductoList = () => {
           },
         };
         const respuesta = await axiosInstance.get(
-          `/api/v1/Producto`,
+          `/api/v1/e/Producto`,
           parametros
         );
         return respuesta.data;
@@ -40,31 +40,20 @@ const ProductoList = () => {
       }
     };
   
-    const renderizarGrupos = () => {
-      const grupos = [];
-      for (let i = 0; i < productos.length; i += 3) {
-        const grupo = productos.slice(i, i + 3);
-        grupos.push(
-          <div key={i} className='grupo-tarjetas'>
-            {grupo.map((producto, index) => (
-              <div key={producto.id} className='card-container'  style={{ marginRight: index < 2 ? '150px' : 0 }}>
+    return (
+            <div className='comida'>{productos.map((producto) => (
+              <div key={producto.id} className='card-container'>
                 <img
                   src={producto.urlImagen}
                   alt={producto.denominacion}
                   className='card-img'
                 />
                 <h1 className='card-title'>{producto.denominacion}</h1>
-                <h3 className='card-price'>{producto.precioVenta}</h3>
+                <h3 className='card-price'>${producto.precioVenta}</h3>
                 <button className='card-btn' onClick={() => handleAgregarAlCarrito(producto.id, producto.denominacion, producto.precioVenta, producto.costo)}>Agregar al carrito</button>
               </div>
             ))}
-          </div>
-        );
-      }
-      return grupos;
-    };
-  
-    return <div className='comida'>{renderizarGrupos()}</div>;
+            </div>)
   };
   
   export default ProductoList;

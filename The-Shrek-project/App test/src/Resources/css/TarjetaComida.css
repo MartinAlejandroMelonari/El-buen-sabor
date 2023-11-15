@@ -1,11 +1,18 @@
+.comida {
+    display: grid;
+     /* Espacio entre las tarjetas */
+    grid-template-columns: repeat(3, 1fr); /* Crea tres columnas de igual tamaño */
+    justify-content: space-around; /* Alinea las columnas en el centro */
+    grid-auto-flow: dense; /* Añade esta línea para cambiar el comportamiento */
+}
+
 .card-container {
     border-radius: 1rem;
     margin: 0.5rem;
     background-color: white;
-    width: 100%;
     box-shadow: 0px 10px 8px #999;
     height: fit-content;
-  }
+}
 
 .card-img {
     width: 100%;
@@ -19,17 +26,8 @@
 
 .card-btn {
     text-align: center;
-    width: 100%;
     border-radius: 1rem;
     padding: 0.5rem 1rem;
     background-color: #d3d096;
     text-decoration: none;
-}
-.comida {
-    align-content: flex-start;
-    width: 100%;
-    left: 10px;
-    display: flex;
-    overflow: auto;
-    flex-wrap: wrap;
 }
