@@ -1,21 +1,23 @@
 .container {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #dbdbdb;
+    background-color: #d3d096;
     padding: 10px;
-    border: 10px solid gray;
+    border: 10px solid rgb(128, 128, 128);
     border-style: outset;
     text-align: center;
 }
 .container form input {
-    font-size: 30px;
+    font-size: 15px;
+    border-color: #d3d096;
+    margin: 10px;
 }
 .container img {
     width: 250px;
     height: 250px;
-    border-radius: 50%;
+   
 }
 .action-button {
     width: 50%;
@@ -23,5 +25,24 @@
     vertical-align: middle;
     display: inline-block;
     line-height: 30px;
+    padding: 5px 3px;
 
 }
+
+.container a img {
+    width: 20px;
+    height: 20px;
+}
+
+.container button{
+    margin-top: 5px;
+    padding: 5px 3px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    background-color:#2b292a34 ;
+}
+
+a{
+    padding: 10px 10px;
+}
+
