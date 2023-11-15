@@ -1,9 +1,8 @@
 import '../../Resources/css/Login.css';
 import ImagenLogin from '../../Resources/Images/Login-Registro.jpg'
 import { useState } from 'react';
-import { API_BASE_URL } from '../Connections/config';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../Connections/axiosConfig';
 
 
 export const Registro = () => {
@@ -25,13 +24,15 @@ export const Registro = () => {
         const datosCompletos = Object.values(datosFormulario).every((campo) => (campo !== ''));
         if(datosCompletos){
         try {  
-        const response = await axios.post(`${API_BASE_URL}/auth/register`,datosFormulario);
+        const response = await axiosInstance.post(`/auth/register`,datosFormulario);
         // Si la solicitud fue exitosa (código de estado 2xx)
         if (response.status >= 200 && response.status < 300) {
           const data = response.data;
           // Manejar la respuesta del servidor, por ejemplo, almacenar el token
           console.log('Token:', data.token);
-          window.localStorage.setItem('token', data.token);     
+          console.log('Id:', data.id);
+          window.localStorage.setItem('token', data.token);
+          window.localStorage.setItem('Id', data.id);     
           window.localStorage.setItem('isLoggedIn','true')
           navigate('/Productos')
           // Redireccionar al usuario a otra página
@@ -47,8 +48,10 @@ export const Registro = () => {
     };
   
     return (
+
       <div className='container'>
         <h2>Crear cuenta</h2>
+
         <form onSubmit={handleRegistro}>
         <img src="src/Resources/Images/Login-Registro.jpg" alt="" />
         <br />
@@ -82,6 +85,7 @@ export const Registro = () => {
             <input placeholder="Repita contaseña" type="password" name="" value={datosFormulario.password2} onChange={handleChange} />
           </label>
           <br />
+
           <button type="submit">Iniciar Sesión</button>
           <button type="submit">Cancelar</button>
           <br />
