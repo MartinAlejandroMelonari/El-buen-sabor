@@ -52,7 +52,7 @@ export const Login = () => {
           <button type="submit">Iniciar Sesión</button>
           <button type="submit">Cancelar</button>
           <br />
-          <a href="">Iniciar secion con google <img className= "google" src="src/Resources/Images/google.jpeg" alt="" /></a>
+          <a href="">Iniciar sesión con google <img className= "google" src="src/Resources/Images/google.jpeg" alt="" /></a>
           <p>No tengo cuenta, <a href="./Register">Registrarme</a></p>
         </form>
       </div>
