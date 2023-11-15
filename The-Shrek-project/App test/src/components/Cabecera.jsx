@@ -2,9 +2,12 @@ import '../Resources/css/Cabecera.css';
 import Logo from '../Resources/Images/logo.jpeg';
 import usuario from '../Resources/Images/admin.jpeg';
 import { Link } from 'react-router-dom';
+import useIsLoggedIn from './Hooks/IsLoggedIn';
 
-const Cabecera = ({TipoDeUsuario = 'desconocido'}) => {
+const Cabecera = ({TipoDeUsuario = 'usuario'}) => {
     let Navegacion = []
+    const LoggedIn = useIsLoggedIn();
+    if (LoggedIn){
     switch (TipoDeUsuario) {
         
         case "admin":
@@ -13,11 +16,11 @@ const Cabecera = ({TipoDeUsuario = 'desconocido'}) => {
                 {ruta:'',nombre:'Productos'},{ruta:'',nombre:'Estadisticas e Informes'}]
             break
         case "usuario":
-            Navegacion = [{ruta:'',nombre:'Mis pedidos'},{ruta:'',nombre:'Productos'},{ruta:'',nombre:'Logout'}]
+            Navegacion = [{ruta:'',nombre:'Mis pedidos'},{ruta:'/Productos',nombre:'Productos'},{ruta:'',nombre:'Logout'}]
             break
-        case "desconocido":
-            Navegacion = [{ruta:'',nombre:'Ingresar'},{ruta:'',nombre:'Registrarse'}]
-            break
+    }
+    }else {
+        Navegacion = [{ruta:'/Login',nombre:'Ingresar'},{ruta:'',nombre:'Home'},{ruta:'/Register',nombre:'Registrarse'}]
     }
     return (
         <div id="header">
