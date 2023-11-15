@@ -47,8 +47,13 @@ export const Registro = () => {
     };
   
     return (
+
       <div className='container'>
         <h2>Crear cuenta</h2>
+=========
+      <div>
+        <h2>Registrarse</h2>
+>>>>>>>>> Temporary merge branch 2
         <form onSubmit={handleRegistro}>
         <img src="src/Resources/Images/Login-Registro.jpg" alt="" />
         <br />
@@ -82,6 +87,7 @@ export const Registro = () => {
             <input placeholder="Repita contaseña" type="password" name="" value={datosFormulario.password2} onChange={handleChange} />
           </label>
           <br />
+
           <button type="submit">Iniciar Sesión</button>
           <button type="submit">Cancelar</button>
           <br />

@@ -56,6 +56,7 @@ export const Login = () => {
           <p>No tengo cuenta, <a href="./Register">Registrarme</a></p>
         </form>
       </div>
+    </div>
     );  
 
   };
