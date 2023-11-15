@@ -34,23 +34,30 @@ export const Login = () => {
     };
   
     return (
+      <div className='container'>
       <div>
+        <img src="src/Resources/Images/Login-Registro.jpg" alt="" />
         <h2>Iniciar Sesión</h2>
         <form onSubmit={handleLogin}>
           <label>
             Nombre de Usuario:
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input placeholder="Ingrese usuario" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
           </label>
           <br />
           <label>
             Contraseña:
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input placeholder="Ingrese contraseña" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </label>
           <br />
           <button type="submit">Iniciar Sesión</button>
+          <button type="submit">Cancelar</button>
+          <br />
+          <a href="">Iniciar sesión con google <img className= "google" src="src/Resources/Images/google.jpeg" alt="" /></a>
+          <p>No tengo cuenta, <a href="./Register">Registrarme</a></p>
         </form>
       </div>
     );  
+
   };
   
   export default Login;
