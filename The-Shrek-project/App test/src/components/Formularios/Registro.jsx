@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../Connections/axiosConfig';
 
-
 export const Registro = () => {
     const navigate = useNavigate();
     const [datosFormulario, setDatosFormulario] = useState({
@@ -50,8 +49,8 @@ export const Registro = () => {
     return (
 
       <div className='container'>
-        <h2>Crear cuenta</h2>
-
+      <div>
+        <h2>Registrarse</h2>
         <form onSubmit={handleRegistro}>
         <img src="src/Resources/Images/Login-Registro.jpg" alt="" />
         <br />
@@ -86,12 +85,13 @@ export const Registro = () => {
           </label>
           <br />
 
-          <button type="submit">Iniciar Sesión</button>
+          <button type="submit">Registrarse</button>
           <button type="submit">Cancelar</button>
           <br />
           <a href="">Crear cuenta con google <img className= "google" src="src/Resources/Images/google.jpeg" alt="" /></a>
         </form>
       </div>
+    </div>
     );
   };
   
