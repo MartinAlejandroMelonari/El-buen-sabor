@@ -1,8 +1,7 @@
 import '../../Resources/css/Login.css'
 import ImagenLogin from '../../Resources/Images/Login-Registro.jpg'
 import { useState } from 'react';
-import { API_BASE_URL } from '../Connections/config';
-import axios from 'axios';
+import axiosInstance from '../Connections/axiosConfig';
 
 export const Login = () => {
     const [username, setUsername] = useState('');
@@ -13,9 +12,9 @@ export const Login = () => {
   
       try {
         
-        const response = await axios.post(`${API_BASE_URL}/auth/login`, {
+        const response = await axiosInstance.post(`/auth/login`, {
           username,
-          password,
+          password
         });
   
         // Si la solicitud fue exitosa (código de estado 2xx)
@@ -25,6 +24,7 @@ export const Login = () => {
           window.localStorage.setItem('token', data.token);
           window.localStorage.setItem('isLoggedIn','true')
           console.log('Token:', data.token);
+          
         } else {
           console.error('Credenciales inválidas');
         }
@@ -50,7 +50,7 @@ export const Login = () => {
           <button type="submit">Iniciar Sesión</button>
         </form>
       </div>
-    );
+    );  
   };
   
   export default Login;

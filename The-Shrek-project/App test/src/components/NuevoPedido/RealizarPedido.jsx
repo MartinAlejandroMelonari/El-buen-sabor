@@ -1,18 +1,28 @@
 import DropdownMedioDePago from '../MenusDesplegables/MenuDesplegableMedioDePago.jsx';
 import DropdownTipoEntrega from '../MenusDesplegables/MenuDesplegableTipoDeEnvio.jsx';
 import { useCarrito } from './Contexto/ContextoCarrito.jsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axiosInstance from '../Connections/axiosConfig.jsx';
 
 const RealizarPedido = () =>{
     const { carrito } = useCarrito();
+    const [numeroPedido, setNumeroPedido] = useState()
+    const [detallePedido, setDetallePedido] = useState({
+          cantidad: 0,
+          subtotal: 0,
+          subtotalCosto: 0,
+          producto:{id: 0},
+          pedido:{
+            id:0
+          }})
+    const [idDetallesPedido, setIdDetallesPedido] = useState([{}])
     const [datosCabeceraPedido, setDatosCabeceraPedido] = useState({
         total: '',
         totalCosto: '',
         estado: 0,      
-        estado_pago: 0,
-        forma_pago: 0,
-        tipo_envio: 0,
+        estadoPago: 0,
+        formaPago: 0,
+        tipoEnvio: 0,
         /* domicilio:{
             calle:'',
             numero:0,
@@ -20,10 +30,7 @@ const RealizarPedido = () =>{
             pisoDpto:0
 
         }, */
-        cliente:{
-            id:0 //ver como obtengo el id desde el token
-        },
-        detallePedido:[{id:3}]
+        detallePedido:[]
     });
     // Función para obtener la hora actual más 30 minutos
   
@@ -45,34 +52,74 @@ const RealizarPedido = () =>{
           });    
         }
     return total.toFixed(2)}
+   
+    const CrearDetallePedido = async () => {
+      try {
+        const detallesPedidoArray = carrito.map((item) => ({
+          cantidad: item.cantidad,
+          subtotal: item.precio,
+          subtotalCosto: item.costo,
+          producto: { id: item.id },
+          pedido: {
+            id: numeroPedido
+          }
+        }));
+        const respuestas = await Promise.all(detallesPedidoArray.map(detalle => axiosInstance.post('api/v1/DetallePedido', detalle)));
+        // Actualizar el estado después de que todas las solicitudes POST hayan tenido éxito
+        setIdDetallesPedido((prevIds) => [
+          ...prevIds,
+          ...respuestas.map(respuesta => ({ id: respuesta.data.id }))
+        ]);
+        setDatosCabeceraPedido((prevDatos) => ({
+          ...prevDatos,
+          detallePedido: [
+            ...prevDatos.detallePedido,
+            ...respuestas.map(respuesta => ({ idDetallePedido: respuesta.data.id }))
+          ]
+        }));
+        console.log("detalles de pedidos creados ", idDetallesPedido)
+        console.log("Detalles pedidos creados con éxito");
+      } catch (error) {
+        console.error('Algo salió mal: ', error);
+      }
+    };
     const CrearPedido = async () => {
       try {
         const respuesta = await axiosInstance.post(
           `/api/v1/Pedido`,
           datosCabeceraPedido
         );
+        setNumeroPedido(respuesta.data.id)
         console.log(respuesta.data)
         return respuesta.data;
       } catch (error) {
         return console.error('Error al obtener productos desde la API:', error);
          }
+      
     };
-    const handleSubmit = (e) => {
-        setDatosCabeceraPedido({
-            ...datosCabeceraPedido,total : TotalCarrito(),totalCosto: TotalCostoCarrito()})
+    const handleSubmit = async (e) => {
+      setDatosCabeceraPedido((prevDatos) => ({
+        ...prevDatos,
+        total: TotalCarrito(),
+        totalCosto: TotalCostoCarrito(),
+        cliente: { id: localStorage.getItem('Id') }
+      }));
         e.preventDefault();
         console.log(datosCabeceraPedido)
-        
         const camposCompletos = Object.values(datosCabeceraPedido).every((campo) => (campo !== ''));
         if (camposCompletos) {
-            console.log("Hubiera enviado")
-            CrearPedido()
+          CrearDetallePedido().then(()=>{
+              console.log("Hubiera enviado pedido")
+              return CrearPedido().then(()=>{
+                setDatosCabeceraPedido()
+                setDetallePedido()
+                setNumeroPedido()
+                setIdDetallesPedido()
+              })
+            }).catch((error)=>{
+              console.error("Hubo un error ", error)
+            })
             
-       /*  const url = `/api/v1/Pedido`
-        console.log("Estoy enviando :", datosCabeceraPedido);
-        //Llamado a la APi con los datos
-        axiosInstance.post(`/api/v1/Pedido`,datosCabeceraPedido,{})
-        window.location.reload(); */
         }else{
             console.log("Complete todos los campos")
             console.log(datosCabeceraPedido)
