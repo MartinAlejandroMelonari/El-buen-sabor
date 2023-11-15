@@ -1,9 +1,10 @@
-import '../../Resources/css/Login.css'
+import '../../Resources/css/Login.css';
 import ImagenLogin from '../../Resources/Images/Login-Registro.jpg'
 import { useState } from 'react';
 import { API_BASE_URL } from '../Connections/config';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
 
 export const Registro = () => {
     const navigate = useNavigate();
@@ -46,40 +47,45 @@ export const Registro = () => {
     };
   
     return (
-      <div>
-        <h2>Iniciar Sesión</h2>
+      <div className='container'>
+        <h2>Crear cuenta</h2>
         <form onSubmit={handleRegistro}>
+        <img src="src/Resources/Images/Login-Registro.jpg" alt="" />
+        <br />
           <label>
             Nombre:
-            <input type="text" name="firstname" value={datosFormulario.firstname} onChange={handleChange} />
+            <input placeholder="Ingresar Nombre" type="text" name="firstname" value={datosFormulario.firstname} onChange={handleChange} />
           </label>
           <br />
           <label>
             Apellido:
-            <input type="text" name="lastname" value={datosFormulario.lastname} onChange={handleChange} />
+            <input placeholder="Ingresar Apellido" type="text" name="lastname" value={datosFormulario.lastname} onChange={handleChange} />
           </label>
           <br />
           <label>
             Email:
-            <input type="text" name="email"value={datosFormulario.email} onChange={handleChange} />
+            <input placeholder="Ingresar email" type="text" name="email"value={datosFormulario.email} onChange={handleChange} />
           </label>
           <br />
           <label>
             Username:
-            <input type="text" name="username"value={datosFormulario.username} onChange={handleChange} />
+            <input placeholder="Ingresar Usuario" type="text" name="username"value={datosFormulario.username} onChange={handleChange} />
           </label>
           <br />
           <label>
             Contraseña:
-            <input type="password" name="password" value={datosFormulario.password} onChange={handleChange} />
+            <input placeholder="Ingresar contraseña" type="password" name="password" value={datosFormulario.password} onChange={handleChange} />
           </label>
           <br />
           <label>
             Repetir Contraseña:
-            <input type="password" name="" value={datosFormulario.password2} onChange={handleChange} />
+            <input placeholder="Repita contaseña" type="password" name="" value={datosFormulario.password2} onChange={handleChange} />
           </label>
           <br />
           <button type="submit">Iniciar Sesión</button>
+          <button type="submit">Cancelar</button>
+          <br />
+          <a href="">Crear cuenta con google <img className= "google" src="src/Resources/Images/google.jpeg" alt="" /></a>
         </form>
       </div>
     );
