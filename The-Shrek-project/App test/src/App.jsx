@@ -8,6 +8,7 @@ import { Registro } from './components/Formularios/Registro';
 import { Login } from './components/Formularios/Login';
 import Logout from './components/Seguridad/Logout';
 import PrivateRoute from './components/Seguridad/PrivateRoute';
+import { AuthenticationGuard } from './components/Auth0/AuthenticationGuard';
 
 function App() {
 
@@ -19,11 +20,11 @@ function App() {
         <div className='padre'>
         
           <Routes>
-            <Route path="" element={<CuerpoPedidoProductos />} />
-            <Route path="/NuevoProducto" element={<PrivateRoute element={< FormularioProducto />}/>} />
-            <Route path="/Register" element={<Registro />}/>
-            <Route path="/Login" element={<Login />}/>
-            <Route path="/Logout" element={<Logout />} />
+            <Route path="" element={<AuthenticationGuard component={CuerpoPedidoProductos}/>} />
+            <Route path="/NuevoProducto" element={<AuthenticationGuard component={<PrivateRoute element={< FormularioProducto/>}/>}/>} />
+            <Route path="/Register" element={<AuthenticationGuard component={<Registro />}/>}/>
+            <Route path="/Login" element={<AuthenticationGuard component={<Login />}/>}/>
+            <Route path="/Logout" element={<AuthenticationGuard component={<Logout />}/>} />
           </Routes>
 
         
